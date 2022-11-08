@@ -6,7 +6,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.content.Context;
-import com.it.textcounter.ReadText;
+import clash.Clash;
 
 public class AarIntegration extends CordovaPlugin{
 
@@ -18,10 +18,9 @@ public class AarIntegration extends CordovaPlugin{
     @Override
     public boolean execute(String action, JSONArray data, final CallbackContext callbackContext) throws JSONException {
 
-        if (action.equals("check")) {
-            String testText = "Hello my Friend";
-            int count = ReadText.numVowels(testText);
-            callbackContext.success(count);
+        if (action.equals("start")) {
+          Clash.start();
+          callbackContext.success("Star success");
           return true;
         }else {
           return false;

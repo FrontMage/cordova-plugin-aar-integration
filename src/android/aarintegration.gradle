@@ -1,11 +1,17 @@
-def minSdkVersion = 19
+android {
+    compileSdkVersion cordovaConfig.SDK_VERSION
+    buildToolsVersion cordovaConfig.BUILD_TOOLS_VERSION
 
-if(cdvMinSdkVersion == null) {
-    ext.cdvMinSdkVersion = minSdkVersion;
-} else if (cdvMinSdkVersion.toInteger() < minSdkVersion) {
-    ext.cdvMinSdkVersion = minSdkVersion;
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    // For the Android Cordova Lib, we allow changing the minSdkVersion, but it is at the users own risk
+    defaultConfig {
+        minSdkVersion cordovaConfig.MIN_SDK_VERSION
+    }
 }
-
 repositories{
     jcenter()
     flatDir{
@@ -14,7 +20,7 @@ repositories{
 }
 
 dependencies {
-    compile(name:'textanalyzer', ext:'aar')
+    implementation(name:'clash', ext:'aar')
 }
 
 android {
